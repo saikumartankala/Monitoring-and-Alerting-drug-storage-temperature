@@ -61,14 +61,12 @@ while True:
 		time.sleep(10)
 		continue
 
-	if int(sensor_value/10.24) >= conf.high_threshold_value or int(sensor_value/10.24) <= conf.$
+	if int(sensor_value/10.24) >= conf.high_threshold_value or int(sensor_value/10.24) <= conf.low_threshold_value:
 		print("\nSensor value is out of threshold")
 		if int(sensor_value/10.24) >=conf.high_threshold_value:
-			message = "Alert! Temperature is above" + str(conf.high_threshold_value) + $
-				  ". The current temperature is " + str(int (sensor_value/10.24)) + "$
+			message = "Alert! Temperature is above" + str(conf.high_threshold_value) + "degrees..The current temperature is " + str(int (sensor_value/10.24)) + "degrees."
 		else:
-			message = "Alert! Temperature is below" + str(conf.low_threshold_value) + "$
-				  ". The current temperature is " + str(int (sensor_value/10.24)) + "$
+			message = "Alert! Temperature is below" + str(conf.low_threshold_value) + "degrees..The current temperature is " + str(int (sensor_value/10.24)) + "degrees."
 		telegram_status = send_telegram_message(message)
 		print("\nTelegram status:", telegram_status)
 
@@ -76,7 +74,7 @@ while True:
 
 	if bound == None:
 		required_data_points = conf.frame_size - len(history_data)
-		print("\nData insufficient. Need", required_data_points, "more data points to compute$
+		print("\nData insufficient. Need", required_data_points, "more data points to compute z-score .")
 		history_data.append(sensor_value)
 		time.sleep(10)
 		continue
